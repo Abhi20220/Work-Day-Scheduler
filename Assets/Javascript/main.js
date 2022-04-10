@@ -66,20 +66,20 @@ function initPage() {
     eightPm.val(init8);
 } 
 
-//
+//variables for time and user input
 var hour = moment().hours();
 var userInput;
 var hourSpan;
 
-
+//function controls the background
 function background () {
-      
+
     $(".form-control").each(function () {
         var timeTest = parseInt($(this).attr("id"));
         hour = parseInt(hour);
         console.log(timeTest);
         console.log(hour);
-  //      console.log(this);
+  
         if (hour > timeTest) {
             $(this).addClass("past");
         } else if (hour < timeTest) {
@@ -90,8 +90,23 @@ function background () {
     });
 }
 
-  
 $(document).ready(function(){
-    initPage();
-    background();
-}
+    initPage()
+    background()
+  
+    // Buttons (save to Local Storage)
+    $(".saveBtn").on("click", function(){
+      userInput = $(this).siblings(".form-control").val().trim();
+      console.log(userInput);
+      hourSpan = $(this).siblings(".input-group-prepend").text().trim();
+      console.log(hourSpan);
+      localStorage.setItem(hourSpan, JSON.stringify(userInput));
+  
+    })
+    // Button for clear the day
+    $("#clearDay").on("click", function(){
+      localStorage.clear();
+      initPage()
+    }) 
+  
+  });
