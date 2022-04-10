@@ -25,7 +25,6 @@ var sixPm = $("#18pm");
 var sevenPm = $("#19pm");
 var eightPm = $("#20pm");
 
-
 //Function gets items from the local storage
 function initPage() {
 
@@ -67,4 +66,32 @@ function initPage() {
     eightPm.val(init8);
 } 
 
+//
+var hour = moment().hours();
+var userInput;
+var hourSpan;
 
+
+function background () {
+      
+    $(".form-control").each(function () {
+        var timeTest = parseInt($(this).attr("id"));
+        hour = parseInt(hour);
+        console.log(timeTest);
+        console.log(hour);
+  //      console.log(this);
+        if (hour > timeTest) {
+            $(this).addClass("past");
+        } else if (hour < timeTest) {
+            $(this).addClass("future");
+        } else {
+            $(this).addClass("present");
+        }
+    });
+}
+
+  
+$(document).ready(function(){
+    initPage();
+    background();
+}
