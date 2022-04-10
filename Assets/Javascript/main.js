@@ -12,6 +12,7 @@ var interval = setInterval(function() {
 }, 100);
 
 //Variables for time
+var eightAm = $("#8am");
 var nineAm = $("#9am");
 var tenAm = $("#10am");
 var elevenAm = $("#11am");
@@ -24,9 +25,16 @@ var fivePm = $("#17pm");
 var sixPm = $("#18pm");
 var sevenPm = $("#19pm");
 var eightPm = $("#20pm");
+var ninePm = $("#21pm");
+var tenPm = $("#22pm");
+var elevenPm = $("#23pm");
 
 //Function gets items from the local storage
 function initPage() {
+
+    console.log("Current Hour " + hour);
+    var init8 = JSON.parse(localStorage.getItem("08:00 am"));
+    eightAm.val(init8);
 
     console.log("Current Hour " + hour);
     var init9 = JSON.parse(localStorage.getItem("09:00 am"));
@@ -62,8 +70,17 @@ function initPage() {
     var init7 = JSON.parse(localStorage.getItem("07:00 pm"))
     sevenPm.val(init7);
 
-    var init8 = JSON.parse(localStorage.getItem("08:00 pm"))
-    eightPm.val(init8);
+    var init8b = JSON.parse(localStorage.getItem("08:00 pm"))
+    eightPm.val(init8b);
+
+    var init9b = JSON.parse(localStorage.getItem("09:00 pm"))
+    ninePm.val(init9b);
+
+    var init10b = JSON.parse(localStorage.getItem("10:00 pm"))
+    tenPm.val(init10b);
+
+    var init11b = JSON.parse(localStorage.getItem("11:00 pm"))
+    elevenPm.val(init11b);
 } 
 
 //variables for time and user input
@@ -71,7 +88,7 @@ var hour = moment().hours();
 var userInput;
 var hourSpan;
 
-//function controls the background
+//function for background
 function background () {
 
     $(".form-control").each(function () {
@@ -109,4 +126,4 @@ $(document).ready(function(){
       initPage()
     }) 
   
-  });
+});
